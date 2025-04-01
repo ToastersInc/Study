@@ -14,14 +14,12 @@ months = [
     "September",
     "October",
     "November",
-    "December"
+    "December",
 ]
 
 # Then output that same date in YYYY-MM-DD format.
 # If the user’s input is not a valid date in either format, prompt the user again.
 # Assume that every month has no more than 31 days; no need to validate whether a month has 28, 29, 30, or 31 days.
-    
-
 
 
 def main():
@@ -29,7 +27,7 @@ def main():
     while True:
         try:
             date = input("Enter in a date in mm/dd/yyyy or month day, year format: ")
-            if '/' in date:
+            if "/" in date:
                 datetime.strptime(date, "%m/%d/%Y")
                 formatted_date = convert_date_classic(date)
                 return formatted_date
@@ -40,14 +38,19 @@ def main():
                 long_date[1] = int(long_date[1])
                 long_date[2] = int(long_date[2])
             else:
-               raise ValueError
-            if long_date[0] in months and len(long_date) == 3 and long_date[1] > 0 and long_date[1] <= 31 and long_date[2] > 0 and long_date[2] <= 2025:
+                raise ValueError
+            if (
+                long_date[0] in months
+                and len(long_date) == 3
+                and long_date[1] > 0
+                and long_date[1] <= 31
+                and long_date[2] > 0
+                and long_date[2] <= 2025
+            ):
                 formatted_date_long = convert_date_long(date)
                 return formatted_date_long
         except ValueError:
             date = input("Enter in a date in mm/dd/yyyy or month day, year format: ")
-
-
 
 
 def convert_date_classic(date):
@@ -71,5 +74,6 @@ def convert_date_long(date):
     day = split_date[1].strip(",")
     year = split_date[2]
     print(f"{year}-{mon}-{day}")
+
 
 main()
