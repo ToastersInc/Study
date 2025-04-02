@@ -12,15 +12,17 @@
 #   Adieu, adieu, to Liesl, Friedrich, Louisa, Kurt, Brigitta, Marta, and Gretl
 
 
-def main():
-    # get names for user one at a time until user presses 'Ctrl + D'
+def main(): 
     names = []
+    """ask for a name from user and continue to ask until they type 'Ctrl - d'"""
     while True:
         try:
             user_input = input("Name: ").title()
             names.append(user_input)
         except EOFError:
             break
+
+    """check for the length of the names list and print the names with proper grammer"""
     print("")
     if len(names) < 1:
         print("you didnt enter any names")
