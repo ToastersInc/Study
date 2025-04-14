@@ -12,7 +12,7 @@
 #   Structure your program as follows, wherein get_level prompts (and, if need be, re-prompts) the user for a level and returns 1, 2, or 3, and generate_integer returns a randomly generated non-negative integer with level digits or raises a ValueError if level is not 1, 2, or 3:
 
 import random
-
+import sys
 
 def main():
     numbers =[]
@@ -23,19 +23,36 @@ def main():
     for _ in range(10):
         numbers.append(generate_integer(selected_level))
     
-    correct = 10
+    answers_correct = 0
+    questions = 10
     incorrect = 3
     while True:
         try:
-            answer = int(input(f"{random.choice(numbers)} + {random.choice(numbers)} "))
+            x = random.choice(numbers)
+            y = random.choice(numbers)
+            for i in range(3):
+                answer = int(input(f"{x} + {y} = "))
+                if answer == x + y:
+                    answers_correct += 1
+                    break
+                else:
+                    incorrect -= 1
+                    print("EEE")
+                
+            questions -= 1
+
+            if incorrect == 0:
+                print(f"{x} + {y} = ", x + y)
+                incorrect = 3
+
+            if questions == 0:
+                print(f"Correct answers = {answers_correct}")
+                sys.exit()
+                
+
 
         except ValueError:
             print("answer must be not negative numbers only")
-
-
-
-
-
 
 
 
