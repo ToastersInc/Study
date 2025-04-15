@@ -30,7 +30,7 @@ def main():
         try:
             x = random.choice(numbers)
             y = random.choice(numbers)
-            for i in range(3):
+            for _ in range(3):
                 answer = int(input(f"{x} + {y} = "))
                 if answer == x + y:
                     answers_correct += 1
